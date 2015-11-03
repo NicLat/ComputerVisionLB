@@ -13,7 +13,6 @@ public class Test03 {
 		String temp = "img-gray/inverno.jpg";
 		IFilter filter;
 		Img newImg;
-		///////PROVA
 		
 		Img image = new Img(temp);
 		Utils.printImage(image.getBufferedImage(), "Original");
