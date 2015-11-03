@@ -18,7 +18,7 @@ public class Test03 {
 		Utils.printImage(image.getBufferedImage(), "Original");
 		
 		image = new Img(temp);
-		filter = new MedianFilter(9);
+		filter = new MedianFilter(1);
 		newImg = filter.filter(image);
 		Utils.printImage(newImg.getBufferedImage(), "Median Filtered");
 

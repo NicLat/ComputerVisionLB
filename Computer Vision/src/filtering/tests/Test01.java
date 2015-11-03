@@ -26,8 +26,8 @@ public class Test01 {
 
 		
 		// box filter, i do the avarage only on the red level (being a gray scale rgb are all the same)
-		for (int i = 1; i < image.getWidth() - 2; i++) {
-			for (int j = 1; j < image.getHeight() - 2; j++) {
+		for (int i = 1; i < image.getHeight() - 1; i++) {
+			for (int j = 1; j < image.getWidth() - 1; j++) {
 
 				int sum = 0;
 				sum += (new Color(image.getPixel(i-1, j-1))).getRed();
