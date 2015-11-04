@@ -7,7 +7,7 @@ import filtering.UniformNoise;
 import filtering.Utils;
 
 
-public class Test04 {
+public class UniformNoiseTest {
 
 	public static void main(String[] args) {
 
