@@ -3,11 +3,11 @@ package filtering;
 import java.awt.Color;
 import java.util.Random;
 
-public class UniformNoiseAdder implements IFilter {
+public class UniformNoise implements IFilter {
 
 	int k;
 	
-	public UniformNoiseAdder(int k) {
+	public UniformNoise(int k) {
 		super();
 		this.k = k;
 	}

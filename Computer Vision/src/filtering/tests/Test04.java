@@ -3,7 +3,7 @@ package filtering.tests;
 import filtering.IFilter;
 import filtering.Img;
 import filtering.MedianFilter;
-import filtering.UniformNoiseAdder;
+import filtering.UniformNoise;
 import filtering.Utils;
 
 
@@ -17,7 +17,7 @@ public class Test04 {
 		Img imageOriginal = new Img(name);
 		Utils.printImage(imageOriginal.getBufferedImage(), "Original");
 		
-		filter = new UniformNoiseAdder(20);
+		filter = new UniformNoise(20);
 		Img imageNoised = filter.filter(imageOriginal);
 		Utils.printImage(imageNoised.getBufferedImage(), "Noisy Image");
 		
