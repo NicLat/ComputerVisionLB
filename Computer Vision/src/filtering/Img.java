@@ -45,13 +45,17 @@ public class Img {
 			// Transformation in vector
 			pixels = new int[img.getWidth() * img.getHeight()];
 			min = (new Color(img.getRGB(0, 0)).getRed());
-			min = (new Color(img.getRGB(0, 0)).getRed());
+			max = (new Color(img.getRGB(0, 0)).getRed());
+			
 			for (int i = 0; i < img.getHeight(); i++)
 				for (int j = 0; j < img.getWidth(); j++) {
+					
 					pixels[j + i * (img.getWidth())] = img.getRGB(j, i);
+					
 					int grayPixel = (new Color(img.getRGB(j, i)).getRed());
 					if(grayPixel < min) min = grayPixel;
 					if(grayPixel > max) max = grayPixel;
+					
 				}
 			width = img.getWidth();
 			height = img.getHeight();
@@ -73,6 +77,30 @@ public class Img {
 			pixels[i] = newColor.getRGB();
 		}
 	}
+	
+	public void normalizeImage(){
+		
+		int[] newPixels = new int[pixels.length];
+		
+		for (int i = 0; i < pixels.length; i++) {
+			
+			int grayPixel = new Color(pixels[i]).getRed();
+			int newGrayPixel = 0;
+			if(grayPixel <= min){
+				newGrayPixel = 0;
+			}
+			else if(grayPixel >= max ){
+				newGrayPixel = 255;
+			}
+			else{
+				newGrayPixel = 255*(grayPixel - min)/(max - min);
+			}
+			Color c = new Color(newGrayPixel, newGrayPixel, newGrayPixel);
+			newPixels[i] = c.getRGB();
+			
+		}
+		pixels = newPixels;
+	}
 
 	public BufferedImage getBufferedImage() {
 		BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
@@ -83,19 +111,6 @@ public class Img {
 		return image;
 	}
 	
-	//non mi normalizza
-	public BufferedImage getBufferedNormalizedImage(){
-		int[] newPixels = new int[pixels.length];
-		for (int i = 0; i < pixels.length; i++) {
-			if(pixels[i] <= min) newPixels[i] = min;
-			else if(pixels[i] >= max )newPixels[i] = max;
-			else newPixels[i] = 255*(pixels[i] - min)/(max - min);
-			
-		}
-		BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-		image.setRGB(0, 0, width, height, newPixels, 0, width);
-		return image;
-	}
 
 	public int[] getPixels() {
 		return pixels;

@@ -9,9 +9,9 @@ public class NormalizeTest {
 		
 		String temp = "img-gray/inverno.jpg";
 		Img image = new Img(temp);
-
 		Utils.printImage(image.getBufferedImage(), "Original");
-		Utils.printImage(image.getBufferedNormalizedImage(), "Normalized");
+		image.normalizeImage();
+		Utils.printImage(image.getBufferedImage(), "Normalized");
 	}
 
 }
