@@ -20,7 +20,7 @@ public class UniformNoise implements IFilter {
 			for (int j = 1; j < original.getWidth() - 1; j++) {
 				
 				double greyPixel = new Color(original.getPixel(i, j)).getRed();
-				double c = rand.nextDouble()*2*k;
+				double c = (rand.nextDouble() - 0.5)*2*k;
 				greyPixel += c;
 				if(greyPixel > 255) greyPixel = 255;
 				if(greyPixel < 0 )greyPixel = 0;
