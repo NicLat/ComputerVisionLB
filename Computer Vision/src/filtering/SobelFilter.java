@@ -31,9 +31,9 @@ public class SobelFilter implements IFilter {
 				
 				if (sum > 255)
 					sum = 255;
-				if (sum < 0)
+				else if (sum < 0)
 					sum= 0;
-
+				
 				Color c = new Color(sum, sum, sum);
 				newImg.setPixel(i, j, c.getRGB());
 			}

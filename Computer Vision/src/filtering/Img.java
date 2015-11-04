@@ -11,6 +11,8 @@ public class Img {
 
 	private int[] pixels;
 	private int height, width;
+	private int min;
+	private int max;
 
 	public Img(int width, int height) {
 		super();
@@ -42,14 +44,17 @@ public class Img {
 
 			// Transformation in vector
 			pixels = new int[img.getWidth() * img.getHeight()];
+			min = (new Color(img.getRGB(0, 0)).getRed());
+			min = (new Color(img.getRGB(0, 0)).getRed());
 			for (int i = 0; i < img.getHeight(); i++)
 				for (int j = 0; j < img.getWidth(); j++) {
 					pixels[j + i * (img.getWidth())] = img.getRGB(j, i);
+					int grayPixel = (new Color(img.getRGB(j, i)).getRed());
+					if(grayPixel < min) min = grayPixel;
+					if(grayPixel > max) max = grayPixel;
 				}
-
 			width = img.getWidth();
 			height = img.getHeight();
-
 		} catch (IOException e) {
 			System.err.println(e.getMessage());
 		}
@@ -75,6 +80,20 @@ public class Img {
 
 		// WritableRaster raster = (WritableRaster) image.getData();
 		// raster.setPixels(0, 0, width, height, pixels);
+		return image;
+	}
+	
+	//non mi normalizza
+	public BufferedImage getBufferedNormalizedImage(){
+		int[] newPixels = new int[pixels.length];
+		for (int i = 0; i < pixels.length; i++) {
+			if(pixels[i] <= min) newPixels[i] = min;
+			else if(pixels[i] >= max )newPixels[i] = max;
+			else newPixels[i] = 255*(pixels[i] - min)/(max - min);
+			
+		}
+		BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+		image.setRGB(0, 0, width, height, newPixels, 0, width);
 		return image;
 	}
 

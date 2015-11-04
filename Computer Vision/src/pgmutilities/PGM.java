@@ -57,9 +57,7 @@ public class PGM
     /**
      * @param max_val the max_val to set
      */
-    public void setMax_val(int max_val) {
-        this.max_val = max_val;
-    }
+   
 
     /**
      * @return the pixels
