@@ -11,17 +11,20 @@ public class Test04 {
 
 	public static void main(String[] args) {
 
-		String temp = "img-gray/inverno.jpg";
+		String name = "img-gray/inverno.jpg";
 		IFilter filter;
-		Img newImg;
 		
-		Img image = new Img(temp);
-		Utils.printImage(image.getBufferedImage(), "Original");
+		Img imageOriginal = new Img(name);
+		Utils.printImage(imageOriginal.getBufferedImage(), "Original");
 		
-		image = new Img(temp);
-		filter = new NoiseAdder(100);
-		newImg = filter.filter(image);
-		Utils.printImage(newImg.getBufferedImage(), "Noisy Image");
+		filter = new NoiseAdder(20);
+		Img imageNoised = filter.filter(imageOriginal);
+		Utils.printImage(imageNoised.getBufferedImage(), "Noisy Image");
+		
+		Img imageDenoised = new Img(name);
+		filter = new MedianFilter(1);
+		imageDenoised = filter.filter(imageNoised);
+		Utils.printImage(imageDenoised.getBufferedImage(), "Image Denoised with Median Filter");
 
 	}
 

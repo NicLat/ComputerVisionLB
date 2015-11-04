@@ -3,14 +3,13 @@ package filtering;
 import java.awt.Color;
 import java.util.Random;
 
-//bisognerebbe considerare anche il kernel!
 public class NoiseAdder implements IFilter {
 
-	double variance;
+	int k;
 	
-	public NoiseAdder(double variance) {
+	public NoiseAdder(int k) {
 		super();
-		this.variance = variance;
+		this.k = k;
 	}
 
 	@Override
@@ -19,12 +18,14 @@ public class NoiseAdder implements IFilter {
 		Random rand = new Random();
 		for (int i = 1; i < original.getHeight() - 1; i++) {
 			for (int j = 1; j < original.getWidth() - 1; j++) {
-				int greyPixel = new Color(original.getPixel(i, j)).getRed();
-				greyPixel += rand.nextGaussian()*Math.sqrt(variance);
+				
+				double greyPixel = new Color(original.getPixel(i, j)).getRed();
+				double c = rand.nextDouble()*2*k;
+				greyPixel += c;
 				if(greyPixel > 255) greyPixel = 255;
 				if(greyPixel < 0 )greyPixel = 0;
-				Color c = new Color(greyPixel, greyPixel, greyPixel);
-				newImg.setPixel(i, j, c.getRGB());
+				Color color = new Color((int)greyPixel, (int)greyPixel, (int)greyPixel);
+				newImg.setPixel(i, j, color.getRGB());
 			}
 
 		}
