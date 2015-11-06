@@ -6,7 +6,7 @@ import filtering.MedianFilter;
 import filtering.Utils;
 
 
-public class Test03 {
+public class MedianTest {
 
 	public static void main(String[] args) {
 

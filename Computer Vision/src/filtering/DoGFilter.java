@@ -2,6 +2,12 @@ package filtering;
 
 import java.awt.Color;
 
+/**
+ * Il DoG filter si ottiene dalla differenza tra due Gaussian Filter con varianze differenti.
+ * In questo modo, si salvano solo i contorni delle immagini. 
+ * @author alessandro
+ *
+ */
 public class DoGFilter implements IFilter {
 
 	double variance1;
@@ -23,6 +29,8 @@ public class DoGFilter implements IFilter {
 		int normalizationConstant1 = 0;
 		double constant1 = 1 / Math.exp(-Math.pow((kernelSize / 2), 2)
 				/ (variance1));
+		
+		//creo le due maschere 
 		for (int i = 0; i < gaussianMask1.length; i++) {
 			for (int j = 0; j < gaussianMask1.length; j++) {
 				gaussianMask1[i][j] = (int) Math.round((constant1 * Math
@@ -31,6 +39,7 @@ public class DoGFilter implements IFilter {
 				normalizationConstant1 += gaussianMask1[i][j];
 			}
 		}
+		
 		int[][] gaussianMask2 = new int[kernelSize][kernelSize];
 		int normalizationConstant2 = 0;
 		double constant2 = 1 / Math.exp(-Math.pow((kernelSize / 2), 2)
@@ -61,9 +70,9 @@ public class DoGFilter implements IFilter {
 					}
 				}
 
-
 				fin1 /= normalizationConstant1;
 				fin2 /= normalizationConstant2;
+				
 				int fin = fin1 - fin2;
 				if (fin > 255)
 					fin = 255;

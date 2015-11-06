@@ -8,7 +8,7 @@ import filtering.SobelFilter;
 import filtering.Utils;
 
 
-public class Test02 {
+public class SobelTest {
 
 	public static void main(String[] args) {
 
@@ -19,14 +19,14 @@ public class Test02 {
 		Img image = new Img(temp);
 		Utils.printImage(image.getBufferedImage(), "Original");
 		
-		filter = new BoxFilter();
+		/*filter = new BoxFilter();
 		newImg = filter.filter(image);
 		Utils.printImage(newImg.getBufferedImage(), "Box Filtered");
 		
 		image = new Img(temp);
 		filter = new SharpeningFilter();
 		newImg = filter.filter(image);
-		Utils.printImage(newImg.getBufferedImage(), "Sharpening Filtered");
+		Utils.printImage(newImg.getBufferedImage(), "Sharpening Filtered");*/
 		
 		image = new Img(temp);
 		filter = new SobelFilter();
