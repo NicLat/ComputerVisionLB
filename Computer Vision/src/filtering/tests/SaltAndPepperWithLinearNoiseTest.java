@@ -2,9 +2,9 @@ package filtering.tests;
 
 import filtering.IFilter;
 import filtering.Img;
-import filtering.MedianFilter;
-import filtering.SaltAndPepperWithLinearNoise;
 import filtering.Utils;
+import filtering.filters.MedianFilter;
+import filtering.noises.SaltAndPepperWithLinearNoise;
 
 public class SaltAndPepperWithLinearNoiseTest {
 	

@@ -1,9 +1,9 @@
 package filtering.tests;
 
-import filtering.DoGFilter;
 import filtering.IFilter;
 import filtering.Img;
 import filtering.Utils;
+import filtering.filters.DoGFilter;
 
 public class DoGTest {
 

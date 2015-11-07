@@ -1,6 +1,9 @@
-package filtering;
+package filtering.filters;
 
 import java.awt.Color;
+
+import filtering.IFilter;
+import filtering.Img;
 
 /**
  * Il filtro di Nagao si ottiene calcolando media e varianza di 9 sottofinestre (a petali) circostanti il pixel corrente.

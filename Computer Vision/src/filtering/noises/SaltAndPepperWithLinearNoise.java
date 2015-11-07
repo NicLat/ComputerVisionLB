@@ -1,7 +1,10 @@
-package filtering;
+package filtering.noises;
 
 import java.awt.Color;
 import java.util.Random;
+
+import filtering.IFilter;
+import filtering.Img;
 
 public class SaltAndPepperWithLinearNoise implements IFilter {
 

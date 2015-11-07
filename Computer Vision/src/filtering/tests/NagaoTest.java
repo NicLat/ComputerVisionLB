@@ -2,9 +2,9 @@ package filtering.tests;
 
 import filtering.IFilter;
 import filtering.Img;
-import filtering.NagaoFilter;
-import filtering.SaltAndPepperNoise;
 import filtering.Utils;
+import filtering.filters.NagaoFilter;
+import filtering.noises.SaltAndPepperNoise;
 
 
 public class NagaoTest {

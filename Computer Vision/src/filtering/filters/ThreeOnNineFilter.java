@@ -1,8 +1,11 @@
-package filtering;
+package filtering.filters;
 
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Collections;
+
+import filtering.IFilter;
+import filtering.Img;
 
 //Non si capisce un cazzo di quello che c'è scritto sulle slide!!!
 //l'immagine filtrata è sbagliata
@@ -47,6 +50,7 @@ public class ThreeOnNineFilter implements IFilter {
 						.getRed()
 						+ (new Color(original.getPixel(i - 1, j + 1))).getRed()
 						+ (new Color(original.getPixel(i - 1, j))).getRed());
+				
 				int maxCoefficient = Collections.max(pCoefficients);
 				int threshold = 255;
 				int sum = 0;
@@ -58,7 +62,7 @@ public class ThreeOnNineFilter implements IFilter {
 					}
 					sum +=integer;
 				}
-				System.out.println(threshold);
+				//System.out.println(threshold);
 				int fin;
 				if(sum > threshold) sum = threshold;
 				fin = (int) (1.5*((maxCoefficient/sum) - 0.333));
