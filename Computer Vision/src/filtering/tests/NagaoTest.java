@@ -22,7 +22,7 @@ public class NagaoTest {
 		imageNagao = filter.filter(imageOriginal);
 		Utils.printImage(imageNagao.getBufferedImage(), "Nagao Filtered");
 		
-		filter = new SaltAndPepperNoise(0.1, 0.9);
+		filter = new SaltAndPepperNoise(0.01, 0.99);
 		imageNoised = filter.filter(imageOriginal);
 		Utils.printImage(imageNoised.getBufferedImage(), "Noisy Image");
 		
