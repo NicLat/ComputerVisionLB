@@ -1,11 +1,11 @@
 package filtering.tests;
 
-import filtering.BoxFilter;
 import filtering.IFilter;
 import filtering.Img;
-import filtering.SharpeningFilter;
-import filtering.SobelFilter;
 import filtering.Utils;
+import filtering.filters.BoxFilter;
+import filtering.filters.SharpeningFilter;
+import filtering.filters.SobelFilter;
 
 
 public class SobelTest {

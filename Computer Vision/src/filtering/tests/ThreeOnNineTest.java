@@ -2,9 +2,9 @@ package filtering.tests;
 
 import filtering.IFilter;
 import filtering.Img;
-import filtering.SobelFilter;
-import filtering.ThreeOnNineFilter;
 import filtering.Utils;
+import filtering.filters.SobelFilter;
+import filtering.filters.ThreeOnNineFilter;
 
 public class ThreeOnNineTest {
 	

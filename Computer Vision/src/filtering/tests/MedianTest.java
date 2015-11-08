@@ -2,8 +2,8 @@ package filtering.tests;
 
 import filtering.IFilter;
 import filtering.Img;
-import filtering.MedianFilter;
 import filtering.Utils;
+import filtering.filters.MedianFilter;
 
 
 public class MedianTest {

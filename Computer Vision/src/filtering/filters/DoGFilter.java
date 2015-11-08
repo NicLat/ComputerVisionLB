@@ -1,6 +1,9 @@
-package filtering;
+package filtering.filters;
 
 import java.awt.Color;
+
+import filtering.IFilter;
+import filtering.Img;
 
 /**
  * Il DoG filter si ottiene dalla differenza tra due Gaussian Filter con varianze differenti.

@@ -1,9 +1,9 @@
 package filtering.tests;
 
-import filtering.DoGFilter;
 import filtering.IFilter;
 import filtering.Img;
 import filtering.Utils;
+import filtering.filters.DoGFilter;
 
 public class DoGTest {
 
@@ -20,7 +20,7 @@ public class DoGTest {
 		
 		filter = new DoGFilter(9, 0.5, 7);
 		Img newImage = filter.filter(image);
-		Utils.printImage(newImage.getBufferedImage(), "Filtered Image");
+		Utils.printImage(newImage.getBufferedImage(), " DoG filtered");
 		
 
 	}

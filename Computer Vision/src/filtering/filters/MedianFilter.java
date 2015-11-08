@@ -1,10 +1,13 @@
-package filtering;
+package filtering.filters;
 
 import java.awt.Color;
 import java.awt.image.ConvolveOp;
 import java.awt.image.Kernel;
 import java.util.ArrayList;
 import java.util.Collections;
+
+import filtering.IFilter;
+import filtering.Img;
 
 public class MedianFilter implements IFilter {
 

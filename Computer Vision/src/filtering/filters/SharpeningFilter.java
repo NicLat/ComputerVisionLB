@@ -1,6 +1,9 @@
-package filtering;
+package filtering.filters;
 
 import java.awt.Color;
+
+import filtering.IFilter;
+import filtering.Img;
 
 public class SharpeningFilter implements IFilter {
 
