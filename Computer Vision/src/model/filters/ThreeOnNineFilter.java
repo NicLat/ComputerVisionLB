@@ -1,11 +1,11 @@
-package filtering.filters;
+package model.filters;
 
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import filtering.IFilter;
-import filtering.Img;
+import model.IFilter;
+import model.Img;
 
 //Non si capisce un cazzo di quello che c'è scritto sulle slide!!!
 //l'immagine filtrata è sbagliata

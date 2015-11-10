@@ -1,4 +1,4 @@
-package filtering;
+package model;
 
 public interface IFilter {
 	

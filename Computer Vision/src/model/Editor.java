@@ -6,9 +6,6 @@ import java.util.Observable;
 
 import javax.imageio.ImageIO;
 
-import filtering.IFilter;
-import filtering.Img;
-
 public class Editor extends Observable{
 	public static final int INITIAL_SIZE = 2000;
 	public static final int INITIAL_COLOR = 255;

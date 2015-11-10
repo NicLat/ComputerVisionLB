@@ -1,4 +1,4 @@
-package filtering.tests;
+package model.tests;
 
 public class NagaoWindows {
 

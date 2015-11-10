@@ -1,9 +1,9 @@
-package filtering.tests;
+package model.tests;
 
-import filtering.IFilter;
-import filtering.Img;
-import filtering.Utils;
-import filtering.filters.KirschFilter;
+import model.IFilter;
+import model.Img;
+import model.Utils;
+import model.filters.KirschFilter;
 
 public class KirschTest {
 	

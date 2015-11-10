@@ -1,9 +1,9 @@
-package filtering.filters;
+package model.filters;
 
 import java.awt.Color;
 
-import filtering.IFilter;
-import filtering.Img;
+import model.IFilter;
+import model.Img;
 
 public class SobelPhaseFilter implements IFilter {
 

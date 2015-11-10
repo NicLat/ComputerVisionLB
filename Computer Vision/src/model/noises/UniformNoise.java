@@ -1,10 +1,10 @@
-package filtering.noises;
+package model.noises;
 
 import java.awt.Color;
 import java.util.Random;
 
-import filtering.IFilter;
-import filtering.Img;
+import model.IFilter;
+import model.Img;
 
 public class UniformNoise implements IFilter {
 

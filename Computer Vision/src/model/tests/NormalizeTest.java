@@ -1,7 +1,7 @@
-package filtering.tests;
+package model.tests;
 
-import filtering.Img;
-import filtering.Utils;
+import model.Img;
+import model.Utils;
 
 public class NormalizeTest {
 	

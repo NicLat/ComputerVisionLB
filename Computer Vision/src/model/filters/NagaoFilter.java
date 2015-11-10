@@ -1,9 +1,9 @@
-package filtering.filters;
+package model.filters;
 
 import java.awt.Color;
 
-import filtering.IFilter;
-import filtering.Img;
+import model.IFilter;
+import model.Img;
 
 /**
  * Il filtro di Nagao si ottiene calcolando media e varianza di 9 sottofinestre

@@ -1,11 +1,11 @@
-package filtering.filters;
+package model.filters;
 
 import java.awt.Color;
 
-import filtering.IFilter;
-import filtering.Img;
+import model.IFilter;
+import model.Img;
 
-public class BoxFilter implements IFilter {
+public class SharpeningFilter implements IFilter {
 
 	@Override
 	public Img filter(Img original) {
@@ -29,7 +29,14 @@ public class BoxFilter implements IFilter {
 				sum += (new Color(original.getPixel(i + 1, j + 1))).getRed();
 				sum /= 9;
 
-				Color c = new Color(sum, sum, sum);
+				int a = 2 * (new Color(original.getPixel(i, j))).getRed();
+				int value = a - sum;
+				if (value > 255)
+					value = 255;
+				else if(value < 0)
+					value = 0;
+
+				Color c = new Color(value, value, value);
 				newImg.setPixel(i-1, j-1, c.getRGB());
 			}
 

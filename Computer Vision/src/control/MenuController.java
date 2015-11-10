@@ -3,20 +3,20 @@ package control;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import filtering.Utils;
-import filtering.filters.BoxFilter;
-import filtering.filters.DoGFilter;
-import filtering.filters.KirschFilter;
-import filtering.filters.NagaoFilter;
-import filtering.filters.RankFilter;
-import filtering.filters.SharpeningFilter;
-import filtering.filters.SobelModuleFilter;
-import filtering.filters.SobelPhaseFilter;
-import filtering.filters.ThreeOnNineFilter;
-import filtering.noises.SaltAndPepperNoise;
-import filtering.noises.SaltAndPepperWithLinearNoise;
-import filtering.noises.UniformNoise;
 import model.Editor;
+import model.Utils;
+import model.filters.BoxFilter;
+import model.filters.DoGFilter;
+import model.filters.KirschFilter;
+import model.filters.NagaoFilter;
+import model.filters.RankFilter;
+import model.filters.SharpeningFilter;
+import model.filters.SobelModuleFilter;
+import model.filters.SobelPhaseFilter;
+import model.filters.ThreeOnNineFilter;
+import model.noises.SaltAndPepperNoise;
+import model.noises.SaltAndPepperWithLinearNoise;
+import model.noises.UniformNoise;
 import view.MenuBar;
 
 public class MenuController {

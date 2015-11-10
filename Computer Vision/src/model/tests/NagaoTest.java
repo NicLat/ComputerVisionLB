@@ -1,10 +1,10 @@
-package filtering.tests;
+package model.tests;
 
-import filtering.IFilter;
-import filtering.Img;
-import filtering.Utils;
-import filtering.filters.NagaoFilter;
-import filtering.noises.SaltAndPepperNoise;
+import model.IFilter;
+import model.Img;
+import model.Utils;
+import model.filters.NagaoFilter;
+import model.noises.SaltAndPepperNoise;
 
 
 public class NagaoTest {

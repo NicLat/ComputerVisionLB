@@ -1,9 +1,9 @@
-package filtering.tests;
+package model.tests;
 
-import filtering.IFilter;
-import filtering.Img;
-import filtering.Utils;
-import filtering.filters.DoGFilter;
+import model.IFilter;
+import model.Img;
+import model.Utils;
+import model.filters.DoGFilter;
 
 public class DoGTest {
 

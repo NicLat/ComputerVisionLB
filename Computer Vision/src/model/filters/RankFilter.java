@@ -1,4 +1,4 @@
-package filtering.filters;
+package model.filters;
 
 import java.awt.Color;
 import java.awt.image.ConvolveOp;
@@ -6,8 +6,8 @@ import java.awt.image.Kernel;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import filtering.IFilter;
-import filtering.Img;
+import model.IFilter;
+import model.Img;
 
 public class RankFilter implements IFilter {
 

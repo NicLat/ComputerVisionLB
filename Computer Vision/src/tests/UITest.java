@@ -5,12 +5,12 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 
 import control.MenuController;
-import filtering.Utils;
 import model.Editor;
+import model.Utils;
 import view.Board;
 import view.MenuBar;
 
-public class MainClass {
+public class UITest {
 	
 	public static void main(String[] args) {
 		
