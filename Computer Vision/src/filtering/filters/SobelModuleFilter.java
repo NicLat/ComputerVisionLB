@@ -5,7 +5,7 @@ import java.awt.Color;
 import filtering.IFilter;
 import filtering.Img;
 
-public class SobelFilter implements IFilter {
+public class SobelModuleFilter implements IFilter {
 
 	
 	@Override
@@ -17,16 +17,16 @@ public class SobelFilter implements IFilter {
 				int x = 0;
 				x += (new Color(original.getPixel(i - 1, j - 1))).getRed()* -1;
 				x += (new Color(original.getPixel(i - 1, j + 1))).getRed();
-				x += (new Color(original.getPixel(i, j - 1))).getRed()* -Math.sqrt(2);
-				x += (new Color(original.getPixel(i, j + 1))).getRed()* Math.sqrt(2);
+				x += (new Color(original.getPixel(i, j - 1))).getRed()* -2;
+				x += (new Color(original.getPixel(i, j + 1))).getRed()* 2;
 				x += (new Color(original.getPixel(i + 1, j - 1))).getRed()* -1;
 				x += (new Color(original.getPixel(i + 1, j + 1))).getRed();
 				
 				int y = 0;
 				y += (new Color(original.getPixel(i - 1, j - 1))).getRed();
 				y += (new Color(original.getPixel(i - 1, j + 1))).getRed();
-				y += (new Color(original.getPixel(i - 1 , j))).getRed()* Math.sqrt(2);
-				y += (new Color(original.getPixel(i + 1 , j))).getRed()* -Math.sqrt(2);
+				y += (new Color(original.getPixel(i - 1 , j))).getRed()* 2;
+				y += (new Color(original.getPixel(i + 1 , j))).getRed()* -2;
 				y += (new Color(original.getPixel(i + 1, j - 1))).getRed()* -1;
 				y += (new Color(original.getPixel(i + 1, j + 1))).getRed()* -1;
 				
