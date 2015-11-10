@@ -18,7 +18,7 @@ public class DoGTest {
 		Img image = new Img(temp);
 		Utils.printImage(image.getBufferedImage(), "Original");
 		
-		filter = new DoGFilter(9, 0.5, 7);
+		filter = new DoGFilter(2, 0.5, 7);
 		Img newImage = filter.filter(image);
 		Utils.printImage(newImage.getBufferedImage(), " DoG filtered");
 		

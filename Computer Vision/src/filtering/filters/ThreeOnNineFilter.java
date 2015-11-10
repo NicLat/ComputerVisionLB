@@ -52,21 +52,20 @@ public class ThreeOnNineFilter implements IFilter {
 						+ (new Color(original.getPixel(i - 1, j))).getRed());
 				
 				int maxCoefficient = Collections.max(pCoefficients);
-				int threshold = 255;
-				int sum = 0;
-				for (Integer integer : pCoefficients) {
-					if((new Color(original.getPixel(i, j))).getRed() < integer){
-						int tau = (new Color(original.getPixel(i, j))).getRed()/integer;
-						int currentTreshold = (1 - tau)/(2*tau + 1);
-						if(currentTreshold < threshold) threshold = currentTreshold;
-					}
-					sum +=integer;
-				}
-				//System.out.println(threshold);
-				int fin;
-				if(sum > threshold) sum = threshold;
-				fin = (int) (1.5*((maxCoefficient/sum) - 0.333));
-				
+				double sum = 0;
+				sum += (new Color(original.getPixel(i - 1, j - 1))).getRed();
+				sum += (new Color(original.getPixel(i - 1, j))).getRed();
+				sum += (new Color(original.getPixel(i - 1, j + 1))).getRed();
+				sum += (new Color(original.getPixel(i, j - 1))).getRed();
+				sum += (new Color(original.getPixel(i, j))).getRed();
+				sum += (new Color(original.getPixel(i, j + 1))).getRed();
+				sum += (new Color(original.getPixel(i + 1, j - 1))).getRed();
+				sum += (new Color(original.getPixel(i + 1, j))).getRed();
+				sum += (new Color(original.getPixel(i + 1, j + 1))).getRed();
+				sum /= 9;
+		
+				int fin;			
+				fin = (int) (1.5*((maxCoefficient*9/sum) - 0.333));
 				if (fin > 255)
 					fin = 255;
 				else if (fin < 0)

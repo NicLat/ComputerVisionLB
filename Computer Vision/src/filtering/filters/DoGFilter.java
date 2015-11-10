@@ -32,7 +32,7 @@ public class DoGFilter implements IFilter {
 		int normalizationConstant1 = 0;
 		double constant1 = 1 / Math.exp(-Math.pow((kernelSize / 2), 2)
 				/ (variance1));
-		
+		System.out.println(constant1);
 		//creo le due maschere 
 		for (int i = 0; i < gaussianMask1.length; i++) {
 			for (int j = 0; j < gaussianMask1.length; j++) {
@@ -54,6 +54,7 @@ public class DoGFilter implements IFilter {
 								(kernelSize / 2 - j), 2))) / (2 * variance2))));
 				normalizationConstant2 += gaussianMask2[i][j];
 			}
+			
 		}
 		for (int i = kernelSize / 2; i < original.getHeight() - kernelSize / 2; i++) {
 			for (int j = kernelSize / 2; j < original.getWidth() - kernelSize
