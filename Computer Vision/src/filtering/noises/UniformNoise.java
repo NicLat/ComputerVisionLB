@@ -19,8 +19,8 @@ public class UniformNoise implements IFilter {
 	public Img filter(Img original) {
 		Img newImg = new Img(original.getWidth(), original.getHeight());
 		Random rand = new Random();
-		for (int i = 1; i < original.getHeight() - 1; i++) {
-			for (int j = 1; j < original.getWidth() - 1; j++) {
+		for (int i = 0; i < original.getHeight(); i++) {
+			for (int j = 0; j < original.getWidth(); j++) {
 				
 				double greyPixel = new Color(original.getPixel(i, j)).getRed();
 				double c = (rand.nextDouble() - 0.5)*2*k;

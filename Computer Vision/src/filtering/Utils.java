@@ -1,10 +1,13 @@
 package filtering;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
 
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenuBar;
 
 public class Utils {
 
@@ -19,4 +22,45 @@ public class Utils {
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
+	
+	
+	
+	
+	
+	public static String selectOpenFile(JMenuBar menuBar){
+		
+		JFileChooser fileChooser = new JFileChooser();
+		//fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+		int result = fileChooser.showOpenDialog(menuBar);
+		if (result == JFileChooser.APPROVE_OPTION) {
+		    File selectedFile = fileChooser.getSelectedFile();
+		    System.out.println("Selected file: " + selectedFile.getAbsolutePath());
+		    return selectedFile.getAbsolutePath();	
+		}
+		return "";
+	}
+	
+	public static String selectSaveFile(JMenuBar menuBar){
+
+		JFileChooser fileChooser = new JFileChooser();
+		fileChooser.setDialogTitle("Specify a file to save");   
+		 
+		int userSelection = fileChooser.showSaveDialog(menuBar);
+		 
+		if (userSelection == JFileChooser.APPROVE_OPTION) {
+		    File fileToSave = fileChooser.getSelectedFile();
+		    System.out.println("Save as file: " + fileToSave.getAbsolutePath());
+		    return fileToSave.getAbsolutePath();
+		}
+		return "";
+	}
+	
+	public static JFrame createFrame(String str) {
+		JFrame frame = new JFrame();
+		frame.setSize(1000,800);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setTitle(str);
+		return frame;
+	}
+
 }
