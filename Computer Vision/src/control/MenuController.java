@@ -4,6 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import filtering.Utils;
+import filtering.filters.BoxFilter;
+import filtering.filters.RankFilter;
+import filtering.filters.SharpeningFilter;
 import filtering.noises.SaltAndPepperNoise;
 import filtering.noises.SaltAndPepperWithLinearNoise;
 import filtering.noises.UniformNoise;
@@ -85,6 +88,37 @@ public class MenuController {
 			}
 		});
 
+		bar.getItemsFilter()[0].addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				editor.setFilter(new BoxFilter());
+				editor.filter();
+			}
+		});
+
+		bar.getItemsFilter()[1].addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				editor.setFilter(new SharpeningFilter());
+				editor.filter();
+			}
+		});
+
+		bar.getItemsFilter()[2].addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String[] p = new String[1];
+				p[0] = "w";
+				JOptionPaneMultipleInput in = new JOptionPaneMultipleInput(p,
+						"Insert the window width");
+				String[] res = in.getResults();
+				editor.setFilter(new RankFilter(Integer.parseInt((res[0])) ));
+				editor.filter();
+			}
+		});
 	}
 
 }

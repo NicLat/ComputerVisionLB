@@ -10,7 +10,7 @@ public class BoxFilter implements IFilter {
 	@Override
 	public Img filter(Img original) {
 		
-		Img newImg = new Img(original.getWidth(), original.getHeight());
+		Img newImg = new Img(original.getWidth()-2, original.getHeight()-2);
 
 		// box filter, i do the avarage only on the red level (being a gray
 		// scale rgb are all the same)
@@ -30,7 +30,7 @@ public class BoxFilter implements IFilter {
 				sum /= 9;
 
 				Color c = new Color(sum, sum, sum);
-				newImg.setPixel(i, j, c.getRGB());
+				newImg.setPixel(i-1, j-1, c.getRGB());
 			}
 
 		}

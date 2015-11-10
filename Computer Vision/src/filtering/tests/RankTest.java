@@ -3,10 +3,10 @@ package filtering.tests;
 import filtering.IFilter;
 import filtering.Img;
 import filtering.Utils;
-import filtering.filters.MedianFilter;
+import filtering.filters.RankFilter;
 
 
-public class MedianTest {
+public class RankTest {
 
 	public static void main(String[] args) {
 
@@ -18,7 +18,7 @@ public class MedianTest {
 		Utils.printImage(image.getBufferedImage(), "Original");
 		
 		image = new Img(temp);
-		filter = new MedianFilter(1);
+		filter = new RankFilter(1);
 		newImg = filter.filter(image);
 		Utils.printImage(newImg.getBufferedImage(), "Median Filtered");
 

@@ -9,18 +9,18 @@ import java.util.Collections;
 import filtering.IFilter;
 import filtering.Img;
 
-public class MedianFilter implements IFilter {
+public class RankFilter implements IFilter {
 
 	int intervalLength;
 
-	public MedianFilter(int intervalLength) {
+	public RankFilter(int intervalLength) {
 		super();
 		this.intervalLength = intervalLength;
 	}
 
 	@Override
 	public Img filter(Img original) {
-		Img newImg = new Img(original.getWidth(), original.getHeight());
+		Img newImg = new Img(original.getWidth()-2, original.getHeight()-2);
 
 		for (int i = 1; i < original.getHeight() - 1; i++) {
 			for (int j = 1; j < original.getWidth() - 1; j++) {
@@ -69,7 +69,7 @@ public class MedianFilter implements IFilter {
 				}
 
 				Color c = new Color(fin, fin, fin);
-				newImg.setPixel(i, j, c.getRGB());
+				newImg.setPixel(i-1, j-1, c.getRGB());
 			}
 
 		}

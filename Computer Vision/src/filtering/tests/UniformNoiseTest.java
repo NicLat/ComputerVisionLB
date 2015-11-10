@@ -3,7 +3,7 @@ package filtering.tests;
 import filtering.IFilter;
 import filtering.Img;
 import filtering.Utils;
-import filtering.filters.MedianFilter;
+import filtering.filters.RankFilter;
 import filtering.noises.UniformNoise;
 
 
@@ -22,7 +22,7 @@ public class UniformNoiseTest {
 		Utils.printImage(imageNoised.getBufferedImage(), "Noisy Image");
 		
 		Img imageDenoised = new Img(name);
-		filter = new MedianFilter(1);
+		filter = new RankFilter(1);
 		imageDenoised = filter.filter(imageNoised);
 		Utils.printImage(imageDenoised.getBufferedImage(), "Image Denoised with Median Filter");
 

@@ -30,13 +30,25 @@ public class MenuBar{
 			menuNoise.add(itemsNoise[2]);
 			
 		menuFilter = new JMenu("Filters");
-			itemsFilter = new JMenuItem[3];
-			itemsFilter[0] = new JMenuItem("Uniform");
+			itemsFilter = new JMenuItem[9];
+			itemsFilter[0] = new JMenuItem("Box");
 			menuFilter.add(itemsFilter[0]);
-			itemsFilter[1] = new JMenuItem("Salt & Pepper");
+			itemsFilter[1] = new JMenuItem("Sharpening");
 			menuFilter.add(itemsFilter[1]);
-			itemsFilter[2] = new JMenuItem("Mixed Noise");
+			itemsFilter[2] = new JMenuItem("Rank");
 			menuFilter.add(itemsFilter[2]);
+			itemsFilter[3] = new JMenuItem("Sobel Module");
+			menuFilter.add(itemsFilter[3]);
+			itemsFilter[4] = new JMenuItem("Sobel Phase");
+			menuFilter.add(itemsFilter[4]);
+			itemsFilter[5] = new JMenuItem("Kirsch");
+			menuFilter.add(itemsFilter[5]);
+			itemsFilter[6] = new JMenuItem("DoG");
+			menuFilter.add(itemsFilter[6]);
+			itemsFilter[7] = new JMenuItem("3/9");
+			menuFilter.add(itemsFilter[7]);
+			itemsFilter[8] = new JMenuItem("Nagao-Matsuyama");
+			menuFilter.add(itemsFilter[8]);
 		
 		
 		bar.add(menuFile);
@@ -52,6 +64,12 @@ public class MenuBar{
 			menuFilter.add(itemsFilter[0]);
 			menuFilter.add(itemsFilter[1]);
 			menuFilter.add(itemsFilter[2]);
+			menuFilter.add(itemsFilter[3]);
+			menuFilter.add(itemsFilter[4]);
+			menuFilter.add(itemsFilter[5]);
+			menuFilter.add(itemsFilter[6]);
+			menuFilter.add(itemsFilter[7]);
+			menuFilter.add(itemsFilter[8]);
 		
 	}
 
