@@ -16,7 +16,7 @@ public class UITest {
 		
 		Editor editor = new Editor();
 		
-		JFrame frame = Utils.createFrame("Image Filtrator");
+		JFrame frame = Utils.createFrame("Image Filtrator",700,1200);
 		frame.setLayout(new BorderLayout());
 		
 		Board board = new Board(editor);

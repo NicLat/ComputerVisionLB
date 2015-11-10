@@ -55,9 +55,9 @@ public class Utils {
 		return "";
 	}
 	
-	public static JFrame createFrame(String str) {
+	public static JFrame createFrame(String str, int height, int width) {
 		JFrame frame = new JFrame();
-		frame.setSize(1000,800);
+		frame.setSize(width,height);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle(str);
 		return frame;
