@@ -1,7 +1,6 @@
 package filtering.filters;
 
 import java.awt.Color;
-import java.util.ArrayList;
 
 import filtering.IFilter;
 import filtering.Img;
@@ -10,7 +9,7 @@ public class KirschFilter implements IFilter {
 
 	@Override
 	public Img filter(Img original) {
-		Img newImg = new Img(original.getWidth(), original.getHeight());
+		Img newImg = new Img(original.getWidth()-2, original.getHeight()-2);
 		for (int i = 1; i < original.getHeight() - 1; i++) {
 			for (int j = 1; j < original.getWidth() - 1; j++) {
 				int sum = 0;
@@ -100,7 +99,7 @@ public class KirschFilter implements IFilter {
 					max= 0;
 				
 				Color c = new Color(max, max, max);
-				newImg.setPixel(i, j, c.getRGB());
+				newImg.setPixel(i-1, j-1, c.getRGB());
 			}
 		}
 		return newImg;

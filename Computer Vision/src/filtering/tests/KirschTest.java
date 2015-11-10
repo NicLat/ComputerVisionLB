@@ -4,7 +4,6 @@ import filtering.IFilter;
 import filtering.Img;
 import filtering.Utils;
 import filtering.filters.KirschFilter;
-import filtering.filters.ThreeOnNineFilter;
 
 public class KirschTest {
 	

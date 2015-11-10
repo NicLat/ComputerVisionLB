@@ -22,54 +22,33 @@ public class ThreeOnNineFilter implements IFilter {
 
 	@Override
 	public Img filter(Img original) {
-		Img newImg = new Img(original.getWidth(), original.getHeight());
-		double[][] matrix = new double[original.getHeight()][original
-				.getWidth()];
+		Img newImg = new Img(original.getWidth() - 2, original.getHeight() - 2);
+		double[][] matrix = new double[original.getHeight()][original.getWidth()];
 		for (int i = 1; i < original.getHeight() - 1; i++) {
 			for (int j = 1; j < original.getWidth() - 1; j++) {
 				ArrayList<Integer> pCoefficients = new ArrayList<>(8);
-				pCoefficients
-						.add((new Color(original.getPixel(i - 1, j - 1)))
-								.getRed()
-								+ (new Color(original.getPixel(i - 1, j)))
-										.getRed()
-								+ (new Color(original.getPixel(i - 1, j + 1)))
-										.getRed());
-				pCoefficients.add((new Color(original.getPixel(i - 1, j - 1)))
-						.getRed()
+				pCoefficients.add((new Color(original.getPixel(i - 1, j - 1))).getRed()
+						+ (new Color(original.getPixel(i - 1, j))).getRed()
+						+ (new Color(original.getPixel(i - 1, j + 1))).getRed());
+				pCoefficients.add((new Color(original.getPixel(i - 1, j - 1))).getRed()
 						+ (new Color(original.getPixel(i, j - 1))).getRed()
 						+ (new Color(original.getPixel(i - 1, j))).getRed());
-				pCoefficients
-						.add((new Color(original.getPixel(i - 1, j - 1)))
-								.getRed()
-								+ (new Color(original.getPixel(i, j - 1)))
-										.getRed()
-								+ (new Color(original.getPixel(i + 1, j - 1)))
-										.getRed());
-				pCoefficients.add((new Color(original.getPixel(i, j - 1)))
-						.getRed()
+				pCoefficients.add((new Color(original.getPixel(i - 1, j - 1))).getRed()
+						+ (new Color(original.getPixel(i, j - 1))).getRed()
+						+ (new Color(original.getPixel(i + 1, j - 1))).getRed());
+				pCoefficients.add((new Color(original.getPixel(i, j - 1))).getRed()
 						+ (new Color(original.getPixel(i + 1, j - 1))).getRed()
 						+ (new Color(original.getPixel(i + 1, j))).getRed());
-				pCoefficients
-						.add((new Color(original.getPixel(i + 1, j - 1)))
-								.getRed()
-								+ (new Color(original.getPixel(i + 1, j)))
-										.getRed()
-								+ (new Color(original.getPixel(i + 1, j + 1)))
-										.getRed());
-				pCoefficients.add((new Color(original.getPixel(i + 1, j)))
-						.getRed()
+				pCoefficients.add((new Color(original.getPixel(i + 1, j - 1))).getRed()
+						+ (new Color(original.getPixel(i + 1, j))).getRed()
+						+ (new Color(original.getPixel(i + 1, j + 1))).getRed());
+				pCoefficients.add((new Color(original.getPixel(i + 1, j))).getRed()
 						+ (new Color(original.getPixel(i + 1, j + 1))).getRed()
 						+ (new Color(original.getPixel(i, j + 1))).getRed());
-				pCoefficients
-						.add((new Color(original.getPixel(i + 1, j + 1)))
-								.getRed()
-								+ (new Color(original.getPixel(i, j + 1)))
-										.getRed()
-								+ (new Color(original.getPixel(i - 1, j + 1)))
-										.getRed());
-				pCoefficients.add((new Color(original.getPixel(i, j + 1)))
-						.getRed()
+				pCoefficients.add((new Color(original.getPixel(i + 1, j + 1))).getRed()
+						+ (new Color(original.getPixel(i, j + 1))).getRed()
+						+ (new Color(original.getPixel(i - 1, j + 1))).getRed());
+				pCoefficients.add((new Color(original.getPixel(i, j + 1))).getRed()
 						+ (new Color(original.getPixel(i - 1, j + 1))).getRed()
 						+ (new Color(original.getPixel(i - 1, j))).getRed());
 
@@ -78,22 +57,18 @@ public class ThreeOnNineFilter implements IFilter {
 				double fin = 0;
 				if (maxCoefficient > p) {
 					double sum = 0;
-					sum += (new Color(original.getPixel(i - 1, j - 1)))
-							.getRed();
+					sum += (new Color(original.getPixel(i - 1, j - 1))).getRed();
 					sum += (new Color(original.getPixel(i - 1, j))).getRed();
-					sum += (new Color(original.getPixel(i - 1, j + 1)))
-							.getRed();
+					sum += (new Color(original.getPixel(i - 1, j + 1))).getRed();
 					sum += (new Color(original.getPixel(i, j - 1))).getRed();
 					sum += (new Color(original.getPixel(i, j))).getRed();
 					sum += (new Color(original.getPixel(i, j + 1))).getRed();
-					sum += (new Color(original.getPixel(i + 1, j - 1)))
-							.getRed();
+					sum += (new Color(original.getPixel(i + 1, j - 1))).getRed();
 					sum += (new Color(original.getPixel(i + 1, j))).getRed();
-					sum += (new Color(original.getPixel(i + 1, j + 1)))
-							.getRed();
+					sum += (new Color(original.getPixel(i + 1, j + 1))).getRed();
 					// sum /= 9;
 					fin = (1.5 * ((maxCoefficient / (double) sum) - 0.333));
-					//System.out.println(fin);
+					// System.out.println(fin);
 					if (fin < threshold) {
 						matrix[i][j] = fin;
 					}
@@ -126,13 +101,13 @@ public class ThreeOnNineFilter implements IFilter {
 					newGrayPixel = 255 * (grayPixel - min) / (max - min);
 				}
 				newMatrix[k][k2] = (int) newGrayPixel;
-				//System.out.println(newGrayPixel);
+				// System.out.println(newGrayPixel);
 			}
 		}
 		for (int i = 1; i < newMatrix.length - 1; i++) {
 			for (int j = 1; j < newMatrix[i].length - 1; j++) {
 				Color c = new Color(newMatrix[i][j], newMatrix[i][j], newMatrix[i][j]);
-				newImg.setPixel(i, j, c.getRGB());
+				newImg.setPixel(i-1, j-1, c.getRGB());
 			}
 		}
 		return newImg;

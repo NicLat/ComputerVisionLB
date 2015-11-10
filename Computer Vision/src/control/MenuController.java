@@ -5,8 +5,14 @@ import java.awt.event.ActionListener;
 
 import filtering.Utils;
 import filtering.filters.BoxFilter;
+import filtering.filters.DoGFilter;
+import filtering.filters.KirschFilter;
+import filtering.filters.NagaoFilter;
 import filtering.filters.RankFilter;
 import filtering.filters.SharpeningFilter;
+import filtering.filters.SobelModuleFilter;
+import filtering.filters.SobelPhaseFilter;
+import filtering.filters.ThreeOnNineFilter;
 import filtering.noises.SaltAndPepperNoise;
 import filtering.noises.SaltAndPepperWithLinearNoise;
 import filtering.noises.UniformNoise;
@@ -112,10 +118,80 @@ public class MenuController {
 			public void actionPerformed(ActionEvent e) {
 				String[] p = new String[1];
 				p[0] = "w";
-				JOptionPaneMultipleInput in = new JOptionPaneMultipleInput(p,
-						"Insert the window width");
+				JOptionPaneMultipleInput in = new JOptionPaneMultipleInput(p, "Insert the window width");
 				String[] res = in.getResults();
-				editor.setFilter(new RankFilter(Integer.parseInt((res[0])) ));
+				editor.setFilter(new RankFilter(Integer.parseInt((res[0]))));
+				editor.filter();
+			}
+		});
+
+		bar.getItemsFilter()[3].addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				editor.setFilter(new SobelModuleFilter());
+				editor.filter();
+			}
+		});
+
+		bar.getItemsFilter()[4].addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				editor.setFilter(new SobelPhaseFilter());
+				editor.filter();
+			}
+		});
+
+		bar.getItemsFilter()[5].addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				editor.setFilter(new KirschFilter());
+				editor.filter();
+			}
+		});
+
+		bar.getItemsFilter()[6].addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String[] p = new String[3];
+				p[0] = "v1";
+				p[1] = "v2";
+				p[2] = "size";
+				JOptionPaneMultipleInput in = new JOptionPaneMultipleInput(p,
+						"Insert the two variances and the kernel size");
+				String[] res = in.getResults();
+				editor.setFilter(new DoGFilter(Double.parseDouble((res[0])), Double.parseDouble((res[1])),
+						Integer.parseInt((res[2]))));
+				editor.filter();
+			}
+		});
+
+		bar.getItemsFilter()[7].addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String[] p = new String[2];
+				p[0] = "p";
+				p[1] = "tau";
+				JOptionPaneMultipleInput in = new JOptionPaneMultipleInput(p, "Insert p and tau");
+				String[] res = in.getResults();
+				editor.setFilter(new ThreeOnNineFilter(Double.parseDouble((res[0])), Double.parseDouble((res[1]))));
+				editor.filter();
+			}
+		});
+		
+		bar.getItemsFilter()[8].addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String[] p = new String[1];
+				p[0] = "s";
+				JOptionPaneMultipleInput in = new JOptionPaneMultipleInput(p, "Insert the size of the nagao kernel (odd number)");
+				String[] res = in.getResults();
+				editor.setFilter(new NagaoFilter(Integer.parseInt((res[0]))));
 				editor.filter();
 			}
 		});

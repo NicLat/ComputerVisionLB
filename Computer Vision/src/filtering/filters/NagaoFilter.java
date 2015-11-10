@@ -6,8 +6,11 @@ import filtering.IFilter;
 import filtering.Img;
 
 /**
- * Il filtro di Nagao si ottiene calcolando media e varianza di 9 sottofinestre (a petali) circostanti il pixel corrente.
- * Di queste sottofinestre si seleziona quella con varianza minore. La media di quest'ultima diventa il valore del pixel corrente.
+ * Il filtro di Nagao si ottiene calcolando media e varianza di 9 sottofinestre
+ * (a petali) circostanti il pixel corrente. Di queste sottofinestre si
+ * seleziona quella con varianza minore. La media di quest'ultima diventa il
+ * valore del pixel corrente.
+ * 
  * @author nicola
  */
 public class NagaoFilter implements IFilter {
@@ -32,12 +35,11 @@ public class NagaoFilter implements IFilter {
 
 	@Override
 	public Img filter(Img original) {
-		Img newImg = new Img(original.getWidth(), original.getHeight());
+		Img newImg = new Img(original.getWidth() - kernelSize + 1, original.getHeight() - kernelSize + 1);
 
 		for (int a = kernelSize / 2; a < original.getHeight() - kernelSize / 2; a++) {
 			for (int b = kernelSize / 2; b < original.getWidth() - kernelSize / 2; b++) {
 
-				
 				// i get the sum of each nagao window and count the elements
 				int[] sums = new int[9];
 				for (int i = 0; i < sums.length; i++) {
@@ -50,8 +52,9 @@ public class NagaoFilter implements IFilter {
 
 				for (int i = 0; i < kernelSize; i++) {
 					for (int j = 0; j < kernelSize; j++) {
-						
-						int pix = (new Color(original.getPixel( a - kernelSize/2 + i , b - kernelSize/2 + j))).getRed();  
+
+						int pix = (new Color(original.getPixel(a - kernelSize / 2 + i, b - kernelSize / 2 + j)))
+								.getRed();
 
 						if (i != limInf && i != limSup && j != limInf && j != limSup) {
 							sums[0] += pix;
@@ -107,13 +110,13 @@ public class NagaoFilter implements IFilter {
 
 					}
 				}
-				
+
 				// i compute the avarages
 				int[] avarages = new int[9];
 				for (int i = 0; i < avarages.length; i++) {
 					avarages[i] = sums[i] / counts[i];
 				}
-				
+
 				// i calculate the variances of each nagao window
 				int[] diff = new int[9];
 				for (int i = 0; i < diff.length; i++) {
@@ -121,8 +124,9 @@ public class NagaoFilter implements IFilter {
 				}
 				for (int i = 0; i < kernelSize; i++) {
 					for (int j = 0; j < kernelSize; j++) {
-						
-						int pix = (new Color(original.getPixel( a - kernelSize/2 + i , b - kernelSize/2 + j))).getRed();  
+
+						int pix = (new Color(original.getPixel(a - kernelSize / 2 + i, b - kernelSize / 2 + j)))
+								.getRed();
 
 						if (i != limInf && i != limSup && j != limInf && j != limSup) {
 							diff[0] += Math.pow(avarages[0] - pix, 2);
@@ -173,20 +177,21 @@ public class NagaoFilter implements IFilter {
 				for (int i = 0; i < diff.length; i++) {
 					variances[i] = diff[i] / counts[i];
 				}
-				
+
 				// i find the minimum variance
 				int min = 1000000000;
 				int indexMin = 0;
 				for (int i = 0; i < variances.length; i++) {
-					if(variances[i] < min){
+					if (variances[i] < min) {
 						min = variances[i];
 						indexMin = i;
 					}
 				}
-				
-				// i assign to the pixel the value of the avarage of the window with the minimum variance
-				Color c = new Color(avarages[indexMin],avarages[indexMin],avarages[indexMin]);
-				newImg.setPixel(a, b, c.getRGB());
+
+				// i assign to the pixel the value of the avarage of the window
+				// with the minimum variance
+				Color c = new Color(avarages[indexMin], avarages[indexMin], avarages[indexMin]);
+				newImg.setPixel(a - kernelSize / 2, b - kernelSize / 2, c.getRGB());
 			}
 		}
 
