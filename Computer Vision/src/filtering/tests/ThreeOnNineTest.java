@@ -17,8 +17,9 @@ public class ThreeOnNineTest {
 		Img image = new Img(temp);
 		Utils.printImage(image.getBufferedImage(), "Original");
 		
-		filter = new ThreeOnNineFilter();
+		filter = new ThreeOnNineFilter(80, 0.68);
 		newImg = filter.filter(image);
+		//newImg.normalizeImage();
 		Utils.printImage(newImg.getBufferedImage(), "3/9 Filtered");
 	}
 
