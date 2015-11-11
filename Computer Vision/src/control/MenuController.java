@@ -3,11 +3,13 @@ package control;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JTextArea;
+
 import model.Editor;
 import model.Utils;
 import model.filters.BoxFilter;
 import model.filters.DoGFilter;
-import model.filters.KirschFilter;
+import model.filters.KirshFilter;
 import model.filters.NagaoFilter;
 import model.filters.RankFilter;
 import model.filters.SharpeningFilter;
@@ -23,11 +25,13 @@ public class MenuController {
 
 	private Editor editor;
 	private MenuBar bar;
+	private JTextArea history;
 
-	public MenuController(Editor editor, MenuBar bar) {
+	public MenuController(Editor editor, MenuBar bar, JTextArea history) {
 		super();
 		this.editor = editor;
 		this.bar = bar;
+		this.history = history;
 	}
 
 	public void setListeners() {
@@ -36,8 +40,10 @@ public class MenuController {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String file = Utils.selectOpenFile(bar.getBar());
-				if (!file.equals(""))
+				if (!file.equals("")) {
 					editor.openImage(file);
+					history.append("Opened image " + file + "\n");
+				}
 			}
 		});
 
@@ -45,8 +51,10 @@ public class MenuController {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String file = Utils.selectSaveFile(bar.getBar());
-				if (!file.equals(""))
+				if (!file.equals("")) {
 					editor.saveImage(file);
+					history.append("Saved image " + file + "\n");
+				}
 			}
 		});
 
@@ -56,10 +64,13 @@ public class MenuController {
 			public void actionPerformed(ActionEvent e) {
 				String[] p = new String[1];
 				p[0] = "k";
-				JOptionPaneMultipleInput in = new JOptionPaneMultipleInput(p, "Insert the k value");
+				JOptionPaneMultipleInput in = new JOptionPaneMultipleInput(p,
+						"Insert the k value");
 				String[] res = in.getResults();
 				editor.setFilter(new UniformNoise(Integer.parseInt((res[0]))));
 				editor.filter();
+				history.append("Applied Uniform Noise with k = " + res[0]
+						+ "\n");
 			}
 		});
 
@@ -70,10 +81,14 @@ public class MenuController {
 				String[] p = new String[2];
 				p[0] = "a";
 				p[1] = "b";
-				JOptionPaneMultipleInput in = new JOptionPaneMultipleInput(p, "Insert the bounds of the noise");
+				JOptionPaneMultipleInput in = new JOptionPaneMultipleInput(p,
+						"Insert the bounds of the noise");
 				String[] res = in.getResults();
-				editor.setFilter(new SaltAndPepperNoise(Double.parseDouble((res[0])), Double.parseDouble((res[1]))));
+				editor.setFilter(new SaltAndPepperNoise(Double
+						.parseDouble((res[0])), Double.parseDouble((res[1]))));
 				editor.filter();
+				history.append("Applied Salt&Pepper Noise with a = " + res[0]
+						+ " and b = " + res[1] + "\n");
 			}
 		});
 
@@ -88,9 +103,12 @@ public class MenuController {
 				JOptionPaneMultipleInput in = new JOptionPaneMultipleInput(p,
 						"Insert the bounds of the noise and the constant k");
 				String[] res = in.getResults();
-				editor.setFilter(new SaltAndPepperWithLinearNoise(Double.parseDouble((res[0])),
-						Double.parseDouble((res[1])), Integer.parseInt((res[2]))));
+				editor.setFilter(new SaltAndPepperWithLinearNoise(Double
+						.parseDouble((res[0])), Double.parseDouble((res[1])),
+						Integer.parseInt((res[2]))));
 				editor.filter();
+				history.append("Applied Mixed Noise with a = " + res[0]
+						+ ", b = " + res[1] + " and k = " + res[2] + "\n");
 			}
 		});
 
@@ -100,6 +118,8 @@ public class MenuController {
 			public void actionPerformed(ActionEvent e) {
 				editor.setFilter(new BoxFilter());
 				editor.filter();
+				history.append("Applied Box Filter\n");
+
 			}
 		});
 
@@ -109,6 +129,7 @@ public class MenuController {
 			public void actionPerformed(ActionEvent e) {
 				editor.setFilter(new SharpeningFilter());
 				editor.filter();
+				history.append("Applied Sharpening Filter\n");
 			}
 		});
 
@@ -118,10 +139,12 @@ public class MenuController {
 			public void actionPerformed(ActionEvent e) {
 				String[] p = new String[1];
 				p[0] = "w";
-				JOptionPaneMultipleInput in = new JOptionPaneMultipleInput(p, "Insert the window width");
+				JOptionPaneMultipleInput in = new JOptionPaneMultipleInput(p,
+						"Insert the window width");
 				String[] res = in.getResults();
 				editor.setFilter(new RankFilter(Integer.parseInt((res[0]))));
 				editor.filter();
+				history.append("Applied Rank Filter with w = " + res[0] + "\n");
 			}
 		});
 
@@ -131,6 +154,7 @@ public class MenuController {
 			public void actionPerformed(ActionEvent e) {
 				editor.setFilter(new SobelModuleFilter());
 				editor.filter();
+				history.append("Applied Sobel Module Filter\n");
 			}
 		});
 
@@ -140,6 +164,7 @@ public class MenuController {
 			public void actionPerformed(ActionEvent e) {
 				editor.setFilter(new SobelPhaseFilter());
 				editor.filter();
+				history.append("Applied Sobel Phase Filter\n");
 			}
 		});
 
@@ -147,8 +172,9 @@ public class MenuController {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				editor.setFilter(new KirschFilter());
+				editor.setFilter(new KirshFilter());
 				editor.filter();
+				history.append("Applied Kirsh Filter\n");
 			}
 		});
 
@@ -163,9 +189,12 @@ public class MenuController {
 				JOptionPaneMultipleInput in = new JOptionPaneMultipleInput(p,
 						"Insert the two variances and the kernel size");
 				String[] res = in.getResults();
-				editor.setFilter(new DoGFilter(Double.parseDouble((res[0])), Double.parseDouble((res[1])),
-						Integer.parseInt((res[2]))));
+				editor.setFilter(new DoGFilter(Double.parseDouble((res[0])),
+						Double.parseDouble((res[1])), Integer
+								.parseInt((res[2]))));
 				editor.filter();
+				history.append("Applied DoG Filter with v1 = " + res[0]
+						+ ", v2 = " + res[1] + " and kernel size = " + res[2] + "\n");
 			}
 		});
 
@@ -176,23 +205,30 @@ public class MenuController {
 				String[] p = new String[2];
 				p[0] = "p";
 				p[1] = "tau";
-				JOptionPaneMultipleInput in = new JOptionPaneMultipleInput(p, "Insert p and tau");
+				JOptionPaneMultipleInput in = new JOptionPaneMultipleInput(p,
+						"Insert p and tau");
 				String[] res = in.getResults();
-				editor.setFilter(new ThreeOnNineFilter(Double.parseDouble((res[0])), Double.parseDouble((res[1]))));
+				editor.setFilter(new ThreeOnNineFilter(Double
+						.parseDouble((res[0])), Double.parseDouble((res[1]))));
 				editor.filter();
+				history.append("Applied Three on Nine Filter with p = "
+						+ res[0] + " and tau = " + res[1] + "\n");
 			}
 		});
-		
+
 		bar.getItemsFilter()[8].addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String[] p = new String[1];
 				p[0] = "s";
-				JOptionPaneMultipleInput in = new JOptionPaneMultipleInput(p, "Insert the size of the nagao kernel (odd number)");
+				JOptionPaneMultipleInput in = new JOptionPaneMultipleInput(p,
+						"Insert the size of the nagao kernel (odd number)");
 				String[] res = in.getResults();
 				editor.setFilter(new NagaoFilter(Integer.parseInt((res[0]))));
 				editor.filter();
+				history.append("Applied Nagao Filter with kernel size = "
+						+ res[0] + "\n");
 			}
 		});
 	}

@@ -5,7 +5,7 @@ import java.awt.Color;
 import model.IFilter;
 import model.Img;
 
-public class KirschFilter implements IFilter {
+public class KirshFilter implements IFilter {
 
 	@Override
 	public Img filter(Img original) {
