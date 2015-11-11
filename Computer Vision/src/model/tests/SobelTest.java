@@ -11,7 +11,7 @@ public class SobelTest {
 
 	public static void main(String[] args) {
 
-		String temp = "img-gray/inverno.jpg";
+		String temp = "img-gray/Pavia1.jpg";
 		IFilter filter;
 		Img newImg;
 		
