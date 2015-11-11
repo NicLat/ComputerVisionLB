@@ -3,7 +3,7 @@ package model.tests;
 import model.IFilter;
 import model.Img;
 import model.Utils;
-import model.filters.KirshFilter;
+import model.filters.KirshFilt;
 
 public class KirshTest {
 	
@@ -16,7 +16,7 @@ public class KirshTest {
 		Img image = new Img(temp);
 		Utils.printImage(image.getBufferedImage(), "Original");
 		
-		filter = new KirshFilter();
+		filter = new KirshFilt();
 		newImg = filter.filter(image);
 		Utils.printImage(newImg.getBufferedImage(), "Kirsch Filtered");
 	}

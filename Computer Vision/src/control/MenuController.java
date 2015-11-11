@@ -9,7 +9,7 @@ import model.Editor;
 import model.Utils;
 import model.filters.BoxFilter;
 import model.filters.DoGFilter;
-import model.filters.KirshFilter;
+import model.filters.KirshFilt;
 import model.filters.NagaoFilter;
 import model.filters.RankFilter;
 import model.filters.SharpeningFilter;
@@ -172,7 +172,7 @@ public class MenuController {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				editor.setFilter(new KirshFilter());
+				editor.setFilter(new KirshFilt());
 				editor.filter();
 				history.append("Applied Kirsh Filter\n");
 			}
