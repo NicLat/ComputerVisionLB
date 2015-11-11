@@ -182,19 +182,17 @@ public class MenuController {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String[] p = new String[3];
+				String[] p = new String[2];
 				p[0] = "v1";
 				p[1] = "v2";
-				p[2] = "size";
 				JOptionPaneMultipleInput in = new JOptionPaneMultipleInput(p,
-						"Insert the two variances and the kernel size");
+						"Insert the two variances");
 				String[] res = in.getResults();
 				editor.setFilter(new DoGFilter(Double.parseDouble((res[0])),
-						Double.parseDouble((res[1])), Integer
-								.parseInt((res[2]))));
+						Double.parseDouble((res[1]))));
 				editor.filter();
 				history.append("Applied DoG Filter with v1 = " + res[0]
-						+ ", v2 = " + res[1] + " and kernel size = " + res[2] + "\n");
+						+ " and v2 = " + res[1] + "\n");
 			}
 		});
 

@@ -15,81 +15,96 @@ public class DoGFilter implements IFilter {
 
 	double variance1;
 	double variance2;
-	int kernelSize;
 
-	public DoGFilter(double variance1, double variance2, int kernelSize) {
+	public DoGFilter(double variance1, double variance2) {
 		super();
 		this.variance1 = variance1;
 		this.variance2 = variance2;
-		this.kernelSize = kernelSize;
 	}
 
 	@Override
 	public Img filter(Img original) {
-		Img newImg = new Img(original.getWidth(), original.getHeight());
+		Img filteredImage = new Img(original.getWidth(), original.getHeight());
 
-		int[][] gaussianMask1 = new int[kernelSize][kernelSize];
-		int normalizationConstant1 = 0;
-		double constant1 = 1 / Math.exp(-Math.pow((kernelSize / 2), 2)
-				/ (variance1));
-		System.out.println(constant1);
-		//creo le due maschere 
-		for (int i = 0; i < gaussianMask1.length; i++) {
-			for (int j = 0; j < gaussianMask1.length; j++) {
-				gaussianMask1[i][j] = (int) Math.round((constant1 * Math
-						.exp(-(Math.pow((kernelSize / 2 - i), 2) + (Math.pow(
-								(kernelSize / 2 - j), 2))) / (2 * variance1))));
-				normalizationConstant1 += gaussianMask1[i][j];
+		int dim = (int) Math.ceil(variance2 * 6);
+		if (dim % 2 == 0) {
+			dim += 1;
+		}
+
+		double[][] gauss = new double[dim][dim];
+		gauss = getGaussianKernel(variance1, dim);
+		double[][] gauss2 = new double[dim][dim];
+		gauss2 = getGaussianKernel(variance2, dim);
+
+		double[][] gaussian = new double[dim][dim];
+		
+		for (int i = 0; i < gaussian.length; i++) {
+			for (int j = 0; j < gaussian.length; j++) {
+				gaussian[i][j] = gauss[i][j] - gauss2[i][j];
+				//System.out.print(gaussian[i][j]+ " ");
+			}
+			//System.out.println();
+		}
+		
+		for (int i = dim/2; i < original.getHeight() - dim/2; i++) {
+			for (int j = dim/2; j < original.getWidth() - dim/2; j++) {
+
+				double convolution = 0;
+
+				for (int j2 = 0; j2 < dim; j2++) {
+					for (int k = 0; k < dim; k++) {
+						convolution += original.getPixel(j2 + i - dim/2, k + j - dim/2) * gaussian[j2][k];
+					}
+				}
+				if (convolution < 0) {
+					filteredImage.setPixel(i, j, (new Color(0,0,0)).getRGB());
+				} else {
+					filteredImage.setPixel(i, j, (new Color(255,255,255)).getRGB());
+				}
 			}
 		}
 		
-		int[][] gaussianMask2 = new int[kernelSize][kernelSize];
-		int normalizationConstant2 = 0;
-		double constant2 = 1 / Math.exp(-Math.pow((kernelSize / 2), 2)
-				/ (variance1));
-		for (int i = 0; i < gaussianMask2.length; i++) {
-			for (int j = 0; j < gaussianMask2.length; j++) {
-				gaussianMask2[i][j] = (int) Math.round((constant2 * Math
-						.exp(-(Math.pow((kernelSize / 2 - i), 2) + (Math.pow(
-								(kernelSize / 2 - j), 2))) / (2 * variance2))));
-				normalizationConstant2 += gaussianMask2[i][j];
+		Img edgeDetectionedImage = edgeDetection(filteredImage);
+		return edgeDetectionedImage;
+	}
+	
+	
+	private static double[][] getGaussianKernel(double sigma, int dim) {
+
+		double[][] gauss = new double[dim][dim];
+		double s = 2.0 * sigma * sigma;
+
+		// generate dimXdim kernel
+		for (int x = -dim / 2; x <= dim / 2; x++) {
+			for (int y = -dim/2 ; y <= dim / 2; y++) {
+				gauss[x + dim / 2][y + dim / 2] = (Math.exp(-(x*x+y*y) / s)) / (Math.PI * s);
 			}
-			
 		}
-		for (int i = kernelSize / 2; i < original.getHeight() - kernelSize / 2; i++) {
-			for (int j = kernelSize / 2; j < original.getWidth() - kernelSize
-					/ 2; j++) {
-				int fin1 = 0;
-				int fin2 = 0;
-
-				for (int l = 0, k1 = i; l < kernelSize; l++, k1++) {
-					for (int l2 = 0, k2 = j; l2 < kernelSize; l2++, k2++) {
-						fin1 += (new Color(original.getPixel(k1 - kernelSize
-								/ 2, k2 - kernelSize / 2))).getRed()
-								* gaussianMask1[l][l2];
-						fin2 += (new Color(original.getPixel(k1 - kernelSize
-								/ 2, k2 - kernelSize / 2))).getRed()
-								* gaussianMask2[l][l2];
-
-					}
-				}
-
-				fin1 /= normalizationConstant1;
-				fin2 /= normalizationConstant2;
-				
-				int fin = fin1 - fin2;
-				if (fin > 255)
-					fin = 255;
-				if (fin < 0)
-					fin = 0;
-
-				Color c = new Color(fin, fin, fin);
-				newImg.setPixel(i, j, c.getRGB());
-			}
-
-		}
-
-		return newImg;
+		return gauss;
 	}
 
+	private Img edgeDetection(Img image) {
+
+		Img newImg = new Img(image.getWidth(), image.getHeight());
+
+		for (int i = 1; i < image.getHeight() - 1; i++) {
+			for (int j = 1; j < image.getWidth() - 1; j++) {
+				
+				for (int j2 = -1; j2 <= 1; j2++) {
+					for (int k = -1; k <= 1; k++) {
+						if (image.getPixel(i, j) != image.getPixel(i + j2,j + k) ) {
+							newImg.setPixel(i, j,  (new Color(0,0,0)).getRGB());
+							k = 2;
+							j2 = 2;
+						} else {
+							newImg.setPixel(i, j, (new Color(255,255,255)).getRGB());
+						}
+					}
+				}
+				
+			}
+		}
+		return newImg;
+	}
+	
 }
