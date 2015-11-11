@@ -6,9 +6,8 @@ import java.util.Collections;
 
 import model.IFilter;
 import model.Img;
+import model.Normalizer;
 
-//Non si capisce un cazzo di quello che c'è scritto sulle slide!!!
-//l'immagine filtrata è sbagliata
 public class ThreeOnNineFilter implements IFilter {
 
 	double p;
@@ -66,9 +65,7 @@ public class ThreeOnNineFilter implements IFilter {
 					sum += (new Color(original.getPixel(i + 1, j - 1))).getRed();
 					sum += (new Color(original.getPixel(i + 1, j))).getRed();
 					sum += (new Color(original.getPixel(i + 1, j + 1))).getRed();
-					// sum /= 9;
 					fin = (1.5 * ((maxCoefficient / (double) sum) - 0.333));
-					// System.out.println(fin);
 					if (fin < threshold) {
 						matrix[i][j] = fin;
 					}
@@ -77,33 +74,9 @@ public class ThreeOnNineFilter implements IFilter {
 			}
 
 		}
-		double min = matrix[0][0];
-		double max = matrix[0][0];
-		for (int k = 0; k < matrix.length; k++) {
-			for (int k2 = 0; k2 < matrix[k].length; k2++) {
-				if (matrix[k][k2] < min)
-					min = matrix[k][k2];
-				if (matrix[k][k2] > max)
-					max = matrix[k][k2];
-			}
-		}
-		int[][] newMatrix = new int[matrix.length][matrix[0].length];
-
-		for (int k = 0; k < matrix.length; k++) {
-			for (int k2 = 0; k2 < matrix[k].length; k2++) {
-				double grayPixel = matrix[k][k2];
-				double newGrayPixel = 0;
-				if (grayPixel <= min) {
-					newGrayPixel = 0;
-				} else if (grayPixel >= max) {
-					newGrayPixel = 255;
-				} else {
-					newGrayPixel = 255 * (grayPixel - min) / (max - min);
-				}
-				newMatrix[k][k2] = (int) newGrayPixel;
-				// System.out.println(newGrayPixel);
-			}
-		}
+			
+		int[][] newMatrix = Normalizer.normalizeImage(matrix);
+		
 		for (int i = 1; i < newMatrix.length - 1; i++) {
 			for (int j = 1; j < newMatrix[i].length - 1; j++) {
 				Color c = new Color(newMatrix[i][j], newMatrix[i][j], newMatrix[i][j]);

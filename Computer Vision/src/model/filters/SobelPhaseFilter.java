@@ -30,7 +30,7 @@ public class SobelPhaseFilter implements IFilter {
 				y += (new Color(original.getPixel(i + 1, j + 1))).getRed() * -1;
 
 				matrix[i][j] = Math.atan(y/(double)x);
-				System.out.println(matrix[i][j]);
+				//System.out.println(matrix[i][j]);
 
 			}
 
