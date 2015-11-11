@@ -5,7 +5,7 @@ import model.Img;
 import model.Utils;
 import model.filters.KirshFilter;
 
-public class KirschTest {
+public class KirshTest {
 	
 	public static void main(String[] args) {
 		
