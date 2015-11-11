@@ -12,8 +12,6 @@ public class SharpeningFilter implements IFilter {
 		
 		Img newImg = new Img(original.getWidth()-2, original.getHeight()-2);
 
-		// box filter, i do the avarage only on the red level (being a gray
-		// scale rgb are all the same)
 		for (int i = 1; i < original.getHeight() - 1; i++) {
 			for (int j = 1; j < original.getWidth() - 1; j++) {
 

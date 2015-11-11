@@ -18,15 +18,6 @@ public class SobelTest {
 		Img image = new Img(temp);
 		Utils.printImage(image.getBufferedImage(), "Original");
 		
-		/*filter = new BoxFilter();
-		newImg = filter.filter(image);
-		Utils.printImage(newImg.getBufferedImage(), "Box Filtered");
-		
-		image = new Img(temp);
-		filter = new SharpeningFilter();
-		newImg = filter.filter(image);
-		Utils.printImage(newImg.getBufferedImage(), "Sharpening Filtered");*/
-		
 		image = new Img(temp);
 		filter = new SobelModuleFilter();
 		newImg = filter.filter(image);
