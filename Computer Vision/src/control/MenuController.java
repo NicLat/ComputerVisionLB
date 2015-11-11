@@ -2,6 +2,10 @@ package control;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.util.StringTokenizer;
 
 import javax.swing.JTextArea;
 
@@ -41,8 +45,11 @@ public class MenuController {
 			public void actionPerformed(ActionEvent e) {
 				String file = Utils.selectOpenFile(bar.getBar());
 				if (!file.equals("")) {
+					
 					editor.openImage(file);
+					history.setText("");
 					history.append("Opened image " + file + "\n");
+					
 				}
 			}
 		});
@@ -52,8 +59,26 @@ public class MenuController {
 			public void actionPerformed(ActionEvent e) {
 				String file = Utils.selectSaveFile(bar.getBar());
 				if (!file.equals("")) {
+					
 					editor.saveImage(file);
 					history.append("Saved image " + file + "\n");
+					
+					StringTokenizer tok = new StringTokenizer(file, ".");
+					PrintWriter writer;
+					try {
+						
+						writer = new PrintWriter( tok.nextToken() + "-history.txt" , "UTF-8");
+						writer.println(history.getText());
+						writer.close();
+						
+					} catch (FileNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (UnsupportedEncodingException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
 				}
 			}
 		});
