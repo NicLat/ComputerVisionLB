@@ -12,6 +12,7 @@ import javax.swing.JTextArea;
 import model.Editor;
 import model.Utils;
 import model.filters.BoxFilter;
+import model.filters.CompassFilter;
 import model.filters.DoGFilter;
 import model.filters.KirshFilter;
 import model.filters.NagaoFilter;
@@ -23,6 +24,7 @@ import model.filters.ThreeOnNineFilter;
 import model.noises.SaltAndPepperNoise;
 import model.noises.SaltAndPepperWithLinearNoise;
 import model.noises.UniformNoise;
+import model.tests.CompassTest;
 import view.MenuBar;
 
 public class MenuController {
@@ -252,6 +254,17 @@ public class MenuController {
 				editor.filter();
 				history.append("Applied Nagao Filter with kernel size = "
 						+ res[0] + "\n");
+			}
+		});
+		
+		bar.getItemsFilter()[9].addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				editor.setFilter(new CompassFilter());
+				editor.filter();
+				history.append("Applied Compass Filter\n");
+				
 			}
 		});
 	}
