@@ -41,7 +41,7 @@ public class MenuBar{
 			menuFilter.add(itemsFilter[3]);
 			itemsFilter[4] = new JMenuItem("Sobel Phase");
 			menuFilter.add(itemsFilter[4]);
-			itemsFilter[5] = new JMenuItem("Kirsch");
+			itemsFilter[5] = new JMenuItem("Kirsh");
 			menuFilter.add(itemsFilter[5]);
 			itemsFilter[6] = new JMenuItem("DoG");
 			menuFilter.add(itemsFilter[6]);
