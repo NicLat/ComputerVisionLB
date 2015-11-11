@@ -6,7 +6,7 @@ import model.IFilter;
 import model.Img;
 import model.Normalizer;
 
-public class KirshFilt implements IFilter {
+public class KirshFilter implements IFilter {
 
 	@Override
 	public Img filter(Img original) {
