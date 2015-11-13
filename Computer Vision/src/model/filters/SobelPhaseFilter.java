@@ -14,10 +14,13 @@ public class SobelPhaseFilter implements IFilter {
 	@Override
 	public Img filter(Img original) {
 		Img newImg = new Img(original.getWidth(), original.getHeight());
+
 		double[][] matrix = new double[original.getHeight() - 1][original
 				.getWidth() - 1];
+
 		for (int i = 1; i < original.getHeight() - 1; i++) {
 			for (int j = 1; j < original.getWidth() - 1; j++) {
+				
 				int x = 0;
 				for (int k = 0; k < horizontalMask.length; k++) {
 					for (int k2 = 0; k2 < horizontalMask.length; k2++) {
@@ -41,7 +44,7 @@ public class SobelPhaseFilter implements IFilter {
 				if (x == 0)
 					matrix[i][j] = 0;
 				else
-					matrix[i][j] = Math.atan(y / (double) x);
+					matrix[i][j] = 180* Math.atan2(y,x) / Math.PI;
 
 			}
 
