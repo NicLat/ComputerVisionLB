@@ -14,6 +14,7 @@ public class Normalizer {
 					max = matrix[k][k2];
 			}
 		}
+		//System.out.println(min + " "+max);
 		int[][] newMatrix = new int[matrix.length][matrix[0].length];
 
 		for (int k = 0; k < matrix.length; k++) {
@@ -21,8 +22,8 @@ public class Normalizer {
 				double grayPixel = matrix[k][k2];
 				int newGrayPixel = 0;
 				
-				newGrayPixel = (int) (255 * (grayPixel - min) / (max - min));
-				
+				newGrayPixel = (int) Math.round(255 * (grayPixel - min) / (max - min));
+				//System.out.println(newGrayPixel);
 				newMatrix[k][k2] = newGrayPixel;
 			}
 		}

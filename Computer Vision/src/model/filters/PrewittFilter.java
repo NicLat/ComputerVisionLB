@@ -7,6 +7,7 @@ import model.Img;
 
 public class PrewittFilter implements IFilter {
 
+	
 	int[][] horizontalMask = {{-1, 0, 1}, {-1, 0, 1}, {-1, 0, 1}};
 	int[][] verticalMask = {{1, 1, 1}, {0, 0, 0}, {-1, -1, -1}};
 	
