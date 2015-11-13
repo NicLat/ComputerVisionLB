@@ -4,7 +4,6 @@ import model.IFilter;
 import model.Img;
 import model.Utils;
 import model.filters.SobelModuleFilter;
-import model.filters.SobelPhaseFilter;
 
 
 public class PrewittTest {

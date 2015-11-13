@@ -16,6 +16,7 @@ import model.filters.CompassFilter;
 import model.filters.DoGFilter;
 import model.filters.KirshFilter;
 import model.filters.NagaoFilter;
+import model.filters.PrewittFilter;
 import model.filters.RankFilter;
 import model.filters.SharpeningFilter;
 import model.filters.SobelModuleFilter;
@@ -24,7 +25,6 @@ import model.filters.ThreeOnNineFilter;
 import model.noises.SaltAndPepperNoise;
 import model.noises.SaltAndPepperWithLinearNoise;
 import model.noises.UniformNoise;
-import model.tests.CompassTest;
 import view.MenuBar;
 
 public class MenuController {
@@ -47,11 +47,11 @@ public class MenuController {
 			public void actionPerformed(ActionEvent e) {
 				String file = Utils.selectOpenFile(bar.getBar());
 				if (!file.equals("")) {
-					
+
 					editor.openImage(file);
 					history.setText("");
 					history.append("Opened image " + file + "\n");
-					
+
 				}
 			}
 		});
@@ -61,18 +61,19 @@ public class MenuController {
 			public void actionPerformed(ActionEvent e) {
 				String file = Utils.selectSaveFile(bar.getBar());
 				if (!file.equals("")) {
-					
+
 					editor.saveImage(file);
 					history.append("Saved image " + file + "\n");
-					
+
 					StringTokenizer tok = new StringTokenizer(file, ".");
 					PrintWriter writer;
 					try {
-						
-						writer = new PrintWriter( tok.nextToken() + "-history.txt" , "UTF-8");
+
+						writer = new PrintWriter(tok.nextToken()
+								+ "-history.txt", "UTF-8");
 						writer.println(history.getText());
 						writer.close();
-						
+
 					} catch (FileNotFoundException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -80,7 +81,7 @@ public class MenuController {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					
+
 				}
 			}
 		});
@@ -256,15 +257,26 @@ public class MenuController {
 						+ res[0] + "\n");
 			}
 		});
-		
+
 		bar.getItemsFilter()[9].addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				editor.setFilter(new CompassFilter());
 				editor.filter();
 				history.append("Applied Compass Filter\n");
-				
+
+			}
+		});
+
+		bar.getItemsFilter()[10].addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				editor.setFilter(new PrewittFilter());
+				editor.filter();
+				history.append("Applied Prewitt Filter\n");
+
 			}
 		});
 	}

@@ -30,7 +30,7 @@ public class MenuBar{
 			menuNoise.add(itemsNoise[2]);
 			
 		menuFilter = new JMenu("Filters");
-			itemsFilter = new JMenuItem[10];
+			itemsFilter = new JMenuItem[11];
 			itemsFilter[0] = new JMenuItem("Box");
 			menuFilter.add(itemsFilter[0]);
 			itemsFilter[1] = new JMenuItem("Sharpening");
@@ -51,6 +51,8 @@ public class MenuBar{
 			menuFilter.add(itemsFilter[8]);
 			itemsFilter[9] = new JMenuItem("Compass");
 			menuFilter.add(itemsFilter[9]);
+			itemsFilter[10] = new JMenuItem("Prewitt");
+			menuFilter.add(itemsFilter[10]);
 		
 		
 		bar.add(menuFile);
@@ -73,6 +75,7 @@ public class MenuBar{
 			menuFilter.add(itemsFilter[7]);
 			menuFilter.add(itemsFilter[8]);
 			menuFilter.add(itemsFilter[9]);
+			menuFilter.add(itemsFilter[10]);
 		
 	}
 
