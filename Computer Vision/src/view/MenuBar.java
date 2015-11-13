@@ -8,7 +8,7 @@ public class MenuBar{
 
 	private JMenuBar bar;
 	private JMenu menuFile,menuNoise,menuFilter;
-	private JMenuItem open,save;
+	private JMenuItem open,save,undo,redo;
 	private JMenuItem[] itemsNoise,itemsFilter;
 
 	public MenuBar() {
@@ -19,6 +19,7 @@ public class MenuBar{
 		menuFile = new JMenu("File");
 			open = new JMenuItem("Open");
 			save = new JMenuItem("Save");
+			undo = new JMenuItem("Undo");
 			
 		menuNoise = new JMenu("Noises");
 			itemsNoise = new JMenuItem[3];
@@ -55,9 +56,11 @@ public class MenuBar{
 			menuFilter.add(itemsFilter[10]);
 		
 		
+		
 		bar.add(menuFile);
 			menuFile.add(open);
 			menuFile.add(save);
+			menuFile.add(undo);
 			
 		bar.add(menuNoise);
 			menuNoise.add(itemsNoise[0]);
@@ -77,6 +80,7 @@ public class MenuBar{
 			menuFilter.add(itemsFilter[9]);
 			menuFilter.add(itemsFilter[10]);
 		
+		
 	}
 
 
@@ -94,6 +98,9 @@ public class MenuBar{
 	}
 	public JMenuItem getSave() {
 		return save;
+	}
+	public JMenuItem getUndo() {
+		return undo;
 	}
 	public JMenuItem[] getItemsNoise() {
 		return itemsNoise;

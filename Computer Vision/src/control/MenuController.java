@@ -279,6 +279,26 @@ public class MenuController {
 
 			}
 		});
+		
+		
+		
+		
+		bar.getUndo().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				editor.undo();
+				String allText = history.getText();
+				String[] lines = allText.split("\n");
+				history.setText("");
+				for (int i = 0; i < lines.length - 1; i++) {
+					history.append(lines[i] + "\n");
+				}
+				if(editor.undoable() == false){
+					bar.getUndo().setEnabled(false);
+				}
+			}
+		});
 	}
 
 }

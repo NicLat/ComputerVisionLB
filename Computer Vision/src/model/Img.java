@@ -7,8 +7,8 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class Img {
-
+public class Img{
+	
 	private int[] pixels;
 	private int height, width;
 	private int min;
@@ -22,10 +22,16 @@ public class Img {
 	}
 	public Img(String file) {
 		super();
-
 		loadFile(file);
 	}
 
+	@Override
+	protected Object clone() throws CloneNotSupportedException {
+		Img n = new Img(width,height);
+		n.setPixels(pixels);
+		return n;
+	}
+	
 	public int getPixel(int i, int j) {
 		// index / img.getWidth() == riga
 		// index % img.getWidth() == colonna
@@ -115,11 +121,12 @@ public class Img {
 	public int[] getPixels() {
 		return pixels;
 	}
-
+	public void setPixels(int[] pixels) {
+		this.pixels = pixels;
+	}
 	public int getHeight() {
 		return height;
 	}
-
 	public int getWidth() {
 		return width;
 	}
