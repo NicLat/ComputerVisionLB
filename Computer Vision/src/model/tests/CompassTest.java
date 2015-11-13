@@ -4,7 +4,6 @@ import model.IFilter;
 import model.Img;
 import model.Utils;
 import model.filters.CompassFilter;
-import model.filters.KirshFilter;
 
 public class CompassTest {
 	

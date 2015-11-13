@@ -8,7 +8,7 @@ public class MenuBar{
 
 	private JMenuBar bar;
 	private JMenu menuFile,menuNoise,menuFilter;
-	private JMenuItem open,save,undo,redo;
+	private JMenuItem open,save,undo;
 	private JMenuItem[] itemsNoise,itemsFilter;
 
 	public MenuBar() {

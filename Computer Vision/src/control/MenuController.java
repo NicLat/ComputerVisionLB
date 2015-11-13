@@ -51,7 +51,6 @@ public class MenuController {
 					editor.openImage(file);
 					history.setText("");
 					history.append("Opened image " + file + "\n");
-
 				}
 			}
 		});
@@ -265,7 +264,6 @@ public class MenuController {
 				editor.setFilter(new CompassFilter());
 				editor.filter();
 				history.append("Applied Compass Filter\n");
-
 			}
 		});
 
@@ -276,7 +274,6 @@ public class MenuController {
 				editor.setFilter(new PrewittFilter());
 				editor.filter();
 				history.append("Applied Prewitt Filter\n");
-
 			}
 		});
 		
@@ -293,9 +290,6 @@ public class MenuController {
 				history.setText("");
 				for (int i = 0; i < lines.length - 1; i++) {
 					history.append(lines[i] + "\n");
-				}
-				if(editor.undoable() == false){
-					bar.getUndo().setEnabled(false);
 				}
 			}
 		});
