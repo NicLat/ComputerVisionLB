@@ -22,6 +22,7 @@ import model.filters.SharpeningFilter;
 import model.filters.SobelModuleFilter;
 import model.filters.SobelPhaseFilter;
 import model.filters.ThreeOnNineFilter;
+import model.noises.GaussianNoise;
 import model.noises.SaltAndPepperNoise;
 import model.noises.SaltAndPepperWithLinearNoise;
 import model.noises.UniformNoise;
@@ -136,6 +137,22 @@ public class MenuController {
 				editor.filter();
 				history.append("Applied Mixed Noise with a = " + res[0]
 						+ ", b = " + res[1] + " and k = " + res[2] + "\n");
+			}
+		});
+
+		bar.getItemsNoise()[3].addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String[] p = new String[1];
+				p[0] = "sigma";
+				JOptionPaneMultipleInput in = new JOptionPaneMultipleInput(p,
+						"Insert sigma");
+				String[] res = in.getResults();
+				editor.setFilter(new GaussianNoise(Double.parseDouble((res[0]))));
+				editor.filter();
+				history.append("Applied Gaussian Noise with sigma = " + res[0]
+						+ "\n");
 			}
 		});
 
@@ -276,12 +293,9 @@ public class MenuController {
 				history.append("Applied Prewitt Filter\n");
 			}
 		});
-		
-		
-		
-		
+
 		bar.getUndo().addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				editor.undo();

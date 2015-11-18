@@ -28,7 +28,7 @@ public class BoxFilter implements IFilter {
 				sum /= 9;
 
 				Color c = new Color(sum, sum, sum);
-				newImg.setPixel(i, j, c.getRGB());
+				newImg.setPixel(i - 1, j - 1, c.getRGB());
 			}
 
 		}

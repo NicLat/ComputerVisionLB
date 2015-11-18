@@ -22,13 +22,15 @@ public class MenuBar{
 			undo = new JMenuItem("Undo");
 			
 		menuNoise = new JMenu("Noises");
-			itemsNoise = new JMenuItem[3];
+			itemsNoise = new JMenuItem[4];
 			itemsNoise[0] = new JMenuItem("Uniform");
 			menuNoise.add(itemsNoise[0]);
 			itemsNoise[1] = new JMenuItem("Salt & Pepper");
 			menuNoise.add(itemsNoise[1]);
 			itemsNoise[2] = new JMenuItem("Mixed Noise");
 			menuNoise.add(itemsNoise[2]);
+			itemsNoise[3] = new JMenuItem("Gaussian Noise");
+			menuNoise.add(itemsNoise[3]);
 			
 		menuFilter = new JMenu("Filters");
 			itemsFilter = new JMenuItem[11];
@@ -66,6 +68,7 @@ public class MenuBar{
 			menuNoise.add(itemsNoise[0]);
 			menuNoise.add(itemsNoise[1]);
 			menuNoise.add(itemsNoise[2]);
+			menuNoise.add(itemsNoise[3]);
 			
 		bar.add(menuFilter);
 			menuFilter.add(itemsFilter[0]);
