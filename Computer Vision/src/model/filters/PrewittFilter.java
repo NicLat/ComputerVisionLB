@@ -22,14 +22,14 @@ public class PrewittFilter implements IFilter {
 						x += (new Color(original.getPixel(i - 1 + k, j - 1 + k2))).getRed()*horizontalMask[k][k2];
 					}
 				}
-				
+				x/=4;
 				int y = 0;
 				for (int k = 0; k < verticalMask.length; k++) {
 					for (int k2 = 0; k2 < verticalMask.length; k2++) {
 						y += (new Color(original.getPixel(i - 1 + k, j - 1 + k2))).getRed()*verticalMask[k][k2];
 					}
 				}
-				
+				y/=4;
 				int sum = (int) Math.sqrt(x*x + y*y);
 				
 				if (sum > 255)

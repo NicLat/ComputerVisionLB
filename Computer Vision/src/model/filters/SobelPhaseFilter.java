@@ -30,6 +30,7 @@ public class SobelPhaseFilter implements IFilter {
 								* horizontalMask[k][k2];
 					}
 				}
+				x/=4;
 
 				int y = 0;
 				for (int k = 0; k < verticalMask.length; k++) {
@@ -40,25 +41,25 @@ public class SobelPhaseFilter implements IFilter {
 								* verticalMask[k][k2];
 					}
 				}
+				y/=4;
 
-				if (x == 0)
+				int sum = (int) Math.sqrt(x*x + y*y);
+				if(sum > 30){
+					matrix[i][j] = (Math.atan2(y,x) + Math.PI/2)*255 / Math.PI;
+				}
+				else matrix[i][j] = 0;
+				if(matrix[i][j] < 0 )
 					matrix[i][j] = 0;
-				else
-					matrix[i][j] = 180* Math.atan2(y,x) / Math.PI;
-
-			}
-
-		}
-
-		int[][] newMatrix = Normalizer.normalizeImage(matrix);
-
-		for (int i = 1; i < newMatrix.length; i++) {
-			for (int j = 1; j < newMatrix[i].length; j++) {
-				Color c = new Color(newMatrix[i][j], newMatrix[i][j],
-						newMatrix[i][j]);
+				if(matrix[i][j] > 255)
+					matrix[i][j] = 255;
+				Color c = new Color((int)matrix[i][j],(int) matrix[i][j],
+						(int)matrix[i][j]);
 				newImg.setPixel(i, j, c.getRGB());
 			}
+
 		}
+
+		
 		return newImg;
 
 	}
